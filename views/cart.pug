@@ -1,0 +1,76 @@
+extends layout 
+
+block content
+  br
+  .container
+    .row
+      .col.d-flex.justify-content-center
+        p.h2 Complete your purchase
+    hr
+
+  .container
+    if cartData.length > 0
+      .row
+        .col-12.d-flex
+          table.table.table-striped
+            thead
+              tr
+                th(scope='col') 
+                  .d-flex.justify-content-center
+                    span Item
+                th(scope='col') 
+                  .d-flex.justify-content-center
+                    span Price
+                th(scope='col') 
+                  .d-flex.justify-content-center
+                    span Quantity
+            tbody
+              each item in cartData
+                tr(scope='row')
+                  td(width='60%')
+                    .row
+                      .col-3.d-flex.justify-content-left
+                        img.img-thumbnail.rounded.mx-auto.d-block.cart-img(src=item.image)
+                      .col-9.d-flex
+                        strong #{item.title}
+                  td(width='15%')
+                    .d-flex.justify-content-center
+                      strong #{parseFloat(item.price).toFixed(2)}
+                  td(width='25%')
+                    .d-flex.justify-content-center
+                      .input-group.mb-3
+                        span.input-group-text 
+                          a.text-muted(href=`/users/${currentUser.id}/cart/${item.itemId}/remove`)
+                            i.fas.fa-minus
+                        input.form-control.justify-content-center.d-flex.align-items-center(type='number' disabled=true value=item.count)
+                        span.input-group-text
+                          a.text-muted(href=href=`/users/${currentUser.id}/cart/${item.itemId}/add`)
+                            i.fas.fa-plus
+            tfoot
+              tr(scope='row')
+                td(colspan=2)
+                  .d-flex.justify-content-center
+                    h3 
+                      strong.text-secondary Total
+                td
+                  .row
+                    .col.d-flex.justify-content-center
+                      h3 
+                        strong #{total.toFixed(2)}
+                    .col.d-flex.justify-content-center
+                      p
+                        a.btn.btn-outline-danger.btn-sm(href=`/users/${currentUser.id}/cart/cancel`, style='font-size: 12px;') Cancel
+                      
+              tr(scope='row')
+                td(colspan=3)
+                  .d-flex.justify-content-center
+                    h3
+                      a.btn.btn-success.btn-lg(href=`/users/${currentUser.id}/cart/proceed`, style='font-size: 24px;') 
+                        strong Proceed
+                
+
+    else
+      .row
+        .col.d-flex.justify-content-center
+          h1
+            i.far.fa-dizzy.text-muted

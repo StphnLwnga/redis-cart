@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  br
+  .container
+    .row
+      .col.d-flex.justify-content-center
+        h2 Store
+
+  hr    
+
+  .container
+    .row
+      if items && items.length
+        each item in items
+          .col-4
+            .card(id=`sku-${item.itemId}`)
+              img.card-img-top.img-thumbnail.rounded.mx-auto.d-block.shop-img(src=item.image)
+              .card-body
+                h5.card-title #{item.title}
+                details.card-text 
+                  summary #{item.description.slice(0,48)}
+                  p #{item.description.slice(48)}
+                hr
+                .row
+                  .col-6
+                    .d-flex.justify-content-start
+                      h3.text-muted
+                        strong #{`$ ${parseFloat(item.price).toFixed(2)}`}
+                  .col-6
+                    .d-flex.justify-content-end
+                      a.btn.btn-dark(href='/shop/'+item.itemId, role='button') Buy Now
+            br

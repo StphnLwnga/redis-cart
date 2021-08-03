@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  br
+  .container
+    .row
+      .col.d-flex.justify-content-center
+        p.h2 Manage Users
+    hr
+
+    .row
+      .col.d-flex
+        if users && users.length
+          table.table.table-striped
+            thead
+              tr
+                th(scope='col') User ID
+                th(scope='col') First Name
+                th(scope='col') Last Name
+                th(scope='col') Switch to user
+                th(scope='col') 
+            tbody
+              each user in users
+                tr
+                  th(scope='row') 
+                    strong #{user.id}
+                  td 
+                    strong #{user.firstName}
+                  td 
+                    strong #{user.lastName}
+                  td
+                    a(href=`/users/${user.id}/switch`, id=user.id) 
+                      strong #{user.email}
+                  td
+                    a(href=`/users/${user.id}/delete`, id=user.id)
+                      strong 
+                        i.fas.fa-trash-alt
+        br
+
+  .container
+    br
+    .row
+      .col.d-flex.justify-content-center
+        p.h3 Add User
+    .row
+      .col-12
+        form#addUser(method='post' action='/users')
+          .mb-3
+            input(type='hidden', name='_csrf', value=csrfToken)
+          .mb-3
+            label.form-label(for='firstName') First Name
+            input.form-control#firstName(type='text', name='firstName' autocomplete='off')
+          .mb-3
+            label.form-label(for='lastName') Last Name
+            input.form-control#lastName(type='text', name='lastName' autocomplete='off')
+          .mb-3
+            label.form-label(for='email') Email
+            input.form-control#email(type='email', name='email' autocomplete='off')
+          .mb-3
+            label.form-label(for='password') Password
+            input.form-control#password(type='password', name='password' autocomplete='off')
+          button.btn.btn-outline-primary(type='submit') Submit

@@ -1,0 +1,49 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+nav {
+  margin-top: 20px;
+  border-radius: 5px;
+  color: whitesmoke;
+  padding: 10px;
+}
+
+.shop-img {
+  width: 200px;
+  height: 225px;
+  border: none;
+}
+
+.card {
+  border: none;
+}
+
+.spinner-border {
+  font-size: 38px;
+  height: 80px;
+  width: 80px;
+}
+
+.fas {
+  font-size: 20px;
+}
+
+table {
+  border-radius: 10px;
+}
+
+tbody {
+  font-size: 14px;
+}
+
+.fa-dizzy {
+  font-size: 450px;
+  font-weight: 900;
+}
+
+.cart-img {
+  width: 50px;
+  height: 65px;
+  border: none;
+}

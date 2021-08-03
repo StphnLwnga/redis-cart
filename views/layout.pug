@@ -1,0 +1,54 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description' content='')
+    meta(name='author' content='')
+
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC`' crossorigin='anonymous')
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css')
+
+    script(async, defer, src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous')
+    script(async, defer, src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js')
+
+  body
+    .container-fluid
+      nav.nav.navbar-expand-lg.navbar-dark.bg-dark
+        .container-fluid.d-flex.flex-grow-1
+          a.navbar-brand.d-lg-inline-block(href="/") Cart
+          //- .w-100.text-right
+          button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+
+          .collapse.navbar-collapse.flex-grow-1.text-right#navbarNavAltMarkup
+            ul.navbar-nav.ms-auto.mb-2.mb-lg-0.flex-nowrap
+              li.nav-item
+                a.nav-link.active(href="/") Home 
+
+              li.nav-item
+                a.nav-link(href='/users') Manage Users
+
+              li.nav-item
+                if currentUser
+                  a.nav-link(href='/users').
+                    Logged in as #{`${currentUser.firstName} ${currentUser.lastName}`} 
+
+              li.nav-item
+                a.nav-link(href=currentUser ? `/users/${currentUser.id}/cart` : '/')
+                  .container.position-relative
+                    i.fas.fa-shopping-cart
+                    span.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-danger. 
+                      #{cartCount}
+
+    .container
+      if (messages)
+        while messages.length > 0
+          - const message = messages.pop();
+          br
+          .alert.alert-dismissible.fade.show(class=`alert-${message.type}`, role='alert')
+            strong #{message.text}
+            button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+            
+      block content
