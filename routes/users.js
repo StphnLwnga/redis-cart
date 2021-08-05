@@ -3,12 +3,12 @@ var router = express.Router();
 const csrf = require(`csurf`);
 const csrfProtection = csrf({ cookie: true });
 
-/* GET users listing. */
+/* GET list of users */
 router.get(`/`, csrfProtection, async function (req, res) {
   return res.render(`users`, { csrfToken: req.csrfToken() });
 });
 
-/** POST /user Create user*/
+/** POST /users Create user*/
 router.post(`/`, csrfProtection, async function (req, res) {
     return res.redirect(`/users`);
 });
@@ -48,7 +48,7 @@ router.get(`/:id/cart/proceed`, async function (req, res) {
   res.redirect(`/`);
 });
 
-/** Process cart contents. Cancel order */
+/** Process cart. Cancel order */
 router.get(`/:id/cart/cancel`, async function (req, res) {
   const { id } = req.params;
 
