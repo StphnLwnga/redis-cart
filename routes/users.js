@@ -1,65 +1,65 @@
-var express = require(`express`);
+var express = require('express');
 var router = express.Router();
-const csrf = require(`csurf`);
+const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 
-/* GET list of users */
-router.get(`/`, csrfProtection, async function (req, res) {
-  return res.render(`users`, { csrfToken: req.csrfToken() });
+/* GET /users 👉🏾 list of users */
+router.get('/', csrfProtection, async function (req, res) {
+  return res.render('users', { csrfToken: req.csrfToken() });
 });
 
-/** POST /users Create user*/
-router.post(`/`, csrfProtection, async function (req, res) {
-    return res.redirect(`/users`);
+/** POST /users 👉🏾 Create user*/
+router.post('/', csrfProtection, async function (req, res) {
+    return res.redirect('/users');
 });
 
-/** GET user -> Switch to user */
-router.get(`/:id/switch`, function (req, res) {
+/** GET /users/:id/switch 👉🏾 Switch to user */
+router.get('/:id/switch', function (req, res) {
   const { id } = req.params;
 
-  return res.redirect(`/`);
+  return res.redirect('/');
 });
 
-/** GET user`s cart data */
-router.get(`/:id/cart`, async function (req, res) {
+/** GET /users/:id/cart 👉🏾 Get user's cart data */
+router.get('/:id/cart', async function (req, res) {
   const { id } = req.params;
 
-  res.render(`cart`, { cartData, total });
+  res.render('cart', { cartData, total });
 });
 
-/** Add quantity of item in the cart */
-router.get(`/:userId/cart/:itemId/add`, async function (req, res) {
+/** GET /users/:userId/cart/:itemId/add 👉🏾 Add quantity of item in the cart */
+router.get('/:userId/cart/:itemId/add', async function (req, res) {
   const [{ userId }, { itemId }] = [req.params, req.params];
 
-  res.redirect(`/`);
+  res.redirect('/');
 });
 
-/** Decrease quantity of item in the cart */
-router.get(`/:userId/cart/:itemId/remove`, async function (req, res) {
+/** GET /users/:userId/cart/:itemId/remove 👉🏾 Decrease quantity of item in the cart */
+router.get('/:userId/cart/:itemId/remove', async function (req, res) {
   const [{ userId }, { itemId }] = [req.params, req.params];
 
-  res.redirect(`/`);
+  res.redirect('/');
 });
 
-/** Process cart. Proceed with order */
-router.get(`/:id/cart/proceed`, async function (req, res) {
+/** GET /users/:id/cart/proceed 👉🏾 Process cart. Proceed with order */
+router.get('/:id/cart/proceed', async function (req, res) {
   const { id } = req.params;
 
-  res.redirect(`/`);
+  res.redirect('/');
 });
 
-/** Process cart. Cancel order */
-router.get(`/:id/cart/cancel`, async function (req, res) {
+/** GET /users/:id/cart/cancel 👉🏾 Process cart. Cancel order */
+router.get('/:id/cart/cancel', async function (req, res) {
   const { id } = req.params;
 
-  res.redirect(`/`);
+  res.redirect('/');
 });
 
-/** DELETE User */
-router.get(`/:id/delete`, async function (req, res) {
+/** GET /users/:id/delete 👉🏾 Delete a user */
+router.get('/:id/delete', async function (req, res) {
   const { id } = req.params;
 
-  return res.redirect(`/users`);
+  return res.redirect('/users');
 });
 
 async function generateHash(password) {
