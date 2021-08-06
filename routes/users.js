@@ -24,7 +24,7 @@ router.get('/:id/switch', function (req, res) {
 router.get('/:id/cart', async function (req, res) {
   const { id } = req.params;
 
-  res.render('cart', { cartData, total });
+  res.render('cart');
 });
 
 /** GET /users/:userId/cart/:itemId/add 👉🏾 Add quantity of item in the cart */
