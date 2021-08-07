@@ -42,7 +42,7 @@ block content
                         span.input-group-text 
                           a.text-muted(href=`/users/${currentUser.id}/cart/${item.itemId}/remove`)
                             i.fas.fa-minus
-                        input.form-control.justify-content-center.d-flex.align-items-center(type='number' disabled=true value=item.count)
+                        input.form-control.d-flex.text-center(type='number' disabled=true value=item.count)
                         span.input-group-text
                           a.text-muted(href=href=`/users/${currentUser.id}/cart/${item.itemId}/add`)
                             i.fas.fa-plus
