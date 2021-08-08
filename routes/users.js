@@ -27,14 +27,14 @@ router.get('/:id/cart', async function (req, res) {
   res.render('cart');
 });
 
-/** GET /users/:userId/cart/:itemId/add 👉🏾 Add quantity of item in the cart */
+/** GET /users/:userId/cart/:itemId/add 👉🏾 Add items to  cart */
 router.get('/:userId/cart/:itemId/add', async function (req, res) {
   const [{ userId }, { itemId }] = [req.params, req.params];
 
   res.redirect('/');
 });
 
-/** GET /users/:userId/cart/:itemId/remove 👉🏾 Decrease quantity of item in the cart */
+/** GET /users/:userId/cart/:itemId/remove 👉🏾 Remove from cart */
 router.get('/:userId/cart/:itemId/remove', async function (req, res) {
   const [{ userId }, { itemId }] = [req.params, req.params];
 
